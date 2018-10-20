@@ -6,12 +6,7 @@ import { getBusData } from "reducers";
 
 export class MapContainer extends Component {
   componentDidMount() {
-    this.props.fetchBusData();
-    // start loop
-  }
-
-  componentWillUnmount() {
-    // stop loop
+    setInterval(() => this.props.fetchBusData(), 5000);
   }
 
   render() {
