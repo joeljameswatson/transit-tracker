@@ -20,5 +20,5 @@ Mapbox https://www.mapbox.com/help/how-access-tokens-work/
 The app was built using create-react-app tool.
 Full details here: https://github.com/facebook/create-react-app
 
-The app makes use a demo proxy to avoid cors issues (not supplied by this repo or maintained by myself).
+The app makes use of a demo proxy to avoid cors issues (not supplied by this repo or maintained by myself).
 If for some reason it's down, you can build and deploy your own using https://github.com/Rob--W/cors-anywhere.
