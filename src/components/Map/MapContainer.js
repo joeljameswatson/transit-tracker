@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Map from "./Map";
 import * as actions from "actions";
+import { onChangeViewport } from "redux-map-gl";
 import { getBusData } from "reducers";
 
 export class MapContainer extends Component {
@@ -10,17 +11,22 @@ export class MapContainer extends Component {
   }
 
   render() {
-    return <Map busData={this.props.busData} />;
+    return (
+      <Map
+        busData={this.props.busData}
+        mapState={this.props.mapState}
+        onChangeViewport={this.props.onChangeViewport}
+      />
+    );
   }
 }
 
 const mapStateToProps = state => {
-  return {
-    busData: getBusData(state)
-  };
+  const mapState = state.map.viewport.toJS();
+  return { busData: getBusData(state), mapState };
 };
 
 export default connect(
   mapStateToProps,
-  actions
+  { ...actions, onChangeViewport }
 )(MapContainer);
