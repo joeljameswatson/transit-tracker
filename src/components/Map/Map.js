@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL from "react-map-gl";
+import MarkerList from "./MarkerList";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 class Map extends Component {
@@ -21,17 +22,7 @@ class Map extends Component {
         mapboxApiAccessToken={process.env.REACT_APP_MAP_BOX_API_TOKEN}
         onViewportChange={viewport => this.setState({ viewport })}
       >
-        {this.props.busData.map((bus, index) => {
-          return (
-            <Marker
-              key={index}
-              latitude={bus.Latitude}
-              longitude={bus.Longitude}
-            >
-              <div>X</div>
-            </Marker>
-          );
-        })}
+        <MarkerList busData={this.props.busData} />
       </ReactMapGL>
     );
   }
