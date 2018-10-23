@@ -1,20 +1,32 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { onChangeViewport } from "redux-map-gl";
+import { getBusData, getMap } from "reducers";
 import Map from "./Map";
 import * as actions from "actions";
-import { onChangeViewport } from "redux-map-gl";
-import { getBusData } from "reducers";
 
 export class MapContainer extends Component {
+  setIntervalID = null;
+
   componentDidMount() {
-    setInterval(() => this.props.fetchBusData(), 5000);
+    this.props.fetchBusData();
+    const refreshRate = process.env.REACT_APP_REFRESH_RATE || 5000;
+    this.setIntervalID = setInterval(
+      () => this.props.fetchBusData(),
+      refreshRate
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.setIntervalID);
   }
 
   render() {
+    const mapState = this.props.map.viewport.toJS();
     return (
       <Map
         busData={this.props.busData}
-        mapState={this.props.mapState}
+        mapState={mapState}
         onChangeViewport={this.props.onChangeViewport}
       />
     );
@@ -22,8 +34,7 @@ export class MapContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  const mapState = state.map.viewport.toJS();
-  return { busData: getBusData(state), mapState };
+  return { busData: getBusData(state), map: getMap(state) };
 };
 
 export default connect(

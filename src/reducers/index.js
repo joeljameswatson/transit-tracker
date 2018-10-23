@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "redux-immutable";
 import { createViewportReducer } from "redux-map-gl";
 import { List } from "immutable";
 
@@ -22,5 +22,5 @@ export default combineReducers({
   map: viewPortReducer
 });
 
-export const getBusData = state => state.busData;
-export const getMap = state => state.getMap;
+export const getBusData = state => state.get("busData");
+export const getMap = state => state.get("map");
