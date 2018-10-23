@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { createViewportReducer } from "redux-map-gl";
+import { List } from "immutable";
 
 const viewPortReducer = createViewportReducer({
   latitude: 49.19050364218905,
@@ -7,7 +8,7 @@ const viewPortReducer = createViewportReducer({
   zoom: 9
 });
 
-const busData = (state = [], action) => {
+const busData = (state = List(), action) => {
   switch (action.type) {
     case "FETCH_BUS_DATA_SUCCESS":
       return action.response;

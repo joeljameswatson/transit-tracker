@@ -1,13 +1,10 @@
 import React from "react";
 import ReactMapGL from "react-map-gl";
-import Immutable from "immutable";
 import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer";
 import ScatterplotOverlay from "./ScatterPlotOverlay";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const Map = ({ mapState, onChangeViewport, busData }) => {
-  const busses = Immutable.fromJS(busData);
-
   const lngLatAccessor = bus => {
     return [bus.get("Longitude"), bus.get("Latitude")];
   };
@@ -24,7 +21,7 @@ const Map = ({ mapState, onChangeViewport, busData }) => {
             onViewportChange={onChangeViewport}
           >
             <ScatterplotOverlay
-              locations={busses}
+              locations={busData}
               dotRadius={3}
               globalOpacity={0.8}
               compositeOperation="lighter"
