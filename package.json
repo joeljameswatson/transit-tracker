@@ -8,6 +8,7 @@
     "react-map-gl": "^3.3.7",
     "react-redux": "^5.0.7",
     "react-scripts": "2.0.5",
+    "react-virtualized": "^9.20.1",
     "redux": "^4.0.1",
     "redux-map-gl": "^0.1.0",
     "superagent": "^4.0.0-beta.5"
