@@ -2,7 +2,7 @@ import superagent from "superagent";
 import { fromJS } from "immutable";
 
 export const fetchBusData = () => {
-  const proxy = process.env.REACT_APP_CORS_PROXY;
+  const proxy = process.env.REACT_APP_CORS_PROXY_URL;
   const url = "https://api.translink.ca/rttiapi/v1/buses?apikey=";
   const token = process.env.REACT_APP_TRANSLINK_API_TOKEN;
   return superagent
